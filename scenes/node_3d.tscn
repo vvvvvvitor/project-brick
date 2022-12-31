@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://8n8cb677mnss"]
+[gd_scene load_steps=29 format=3 uid="uid://8n8cb677mnss"]
 
 [ext_resource type="Script" path="res://src/game/camera/gd_game_camera.gd" id="1_2067x"]
 [ext_resource type="Script" path="res://src/game/client/gd_client.gd" id="1_ngyf4"]
@@ -7,6 +7,7 @@
 [ext_resource type="FontFile" uid="uid://iy224o7xv23a" path="res://data/UI/themes/fonts/futur.ttf" id="4_itmj3"]
 [ext_resource type="Script" path="res://src/game/coreui/gd_pause_button.gd" id="6_aoefi"]
 [ext_resource type="Script" path="res://src/game/coreui/gd_pause_menu.gd" id="6_ktw6x"]
+[ext_resource type="Script" path="res://src/game/coreui/gd_chat_box.gd" id="7_bytr2"]
 [ext_resource type="Script" path="res://src/game/coreui/gd_top_pause_bar.gd" id="8_cc8kq"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_v0sif"]
@@ -245,6 +246,7 @@ size_flags_horizontal = 3
 
 [node name="PauseButton" type="Button" parent="GameCamera/Camera3D/CanvasLayer/CoreUI/Theme/VBoxContainer/Margin/BottomBar/Left"]
 layout_mode = 2
+focus_mode = 0
 toggle_mode = true
 shortcut = SubResource("Shortcut_isjlj")
 text = "Pause"
@@ -255,14 +257,15 @@ layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="TextEdit" type="TextEdit" parent="GameCamera/Camera3D/CanvasLayer/CoreUI/Theme/VBoxContainer/Margin/BottomBar/Center"]
+[node name="ChatBox" type="TextEdit" parent="GameCamera/Camera3D/CanvasLayer/CoreUI/Theme/VBoxContainer/Margin/BottomBar/Center"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/line_spacing = 9
-placeholder_text = "Type something..."
+placeholder_text = "Press T to type"
 wrap_mode = 1
 scroll_smooth = true
 minimap_width = 45
+script = ExtResource("7_bytr2")
 
 [node name="Right" type="HBoxContainer" parent="GameCamera/Camera3D/CanvasLayer/CoreUI/Theme/VBoxContainer/Margin/BottomBar"]
 layout_mode = 2

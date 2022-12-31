@@ -8,6 +8,7 @@ class_name Character
 @export var client_air_friction = 0.9
 @export var client_gravity = -16
 @export var client_jump_force = 5
+@export var force_idle = false
 
 enum CLIENT_STATES {
 	IDLE,
@@ -26,6 +27,8 @@ var current_client_state = CLIENT_STATES.IDLE
 
 func _ready():
 	camera.camera_state_changed.connect(_on_camera_state_change)
+	OnlineManager.local_client = self
+	
 func _physics_process(delta):
 	var input_direction:Vector2 = Vector2(Input.get_axis("client_move_left", "client_move_right"), Input.get_axis("client_move_fowards", "client_move_backwards"))
 	
@@ -37,7 +40,7 @@ func _physics_process(delta):
 	
 	match current_rotation_method:
 		ROTATION_METHOD.FREE:
-			if input_direction.length() > 0:
+			if input_direction.length() > 0 && !force_idle:
 				rotation.y = lerp_angle(rotation.y, camera.rotation.y + atan2(input_direction.x, input_direction.y), 0.25)
 		ROTATION_METHOD.LOCKED:
 			rotation.y = camera.rotation.y
@@ -47,14 +50,15 @@ func _physics_process(delta):
 			
 			apply_friction(client_ground_friction)
 			
-			if input_direction.length() > 0:
+			if input_direction.length() > 0 && !force_idle:
 				current_client_state = CLIENT_STATES.MOVING
 	
-			if !is_on_floor():
+			if !is_on_floor() && !force_idle:
 				current_client_state = CLIENT_STATES.FALLING
 				
-			if Input.is_action_just_pressed("client_action_jump"):
+			if Input.is_action_just_pressed("client_action_jump") && !force_idle:
 				jump()
+			
 		CLIENT_STATES.MOVING:
 			apply_movement(direction, client_ground_speed, delta)
 			apply_friction(client_ground_friction)
