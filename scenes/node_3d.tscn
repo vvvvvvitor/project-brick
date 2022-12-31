@@ -1,0 +1,342 @@
+[gd_scene load_steps=28 format=3 uid="uid://8n8cb677mnss"]
+
+[ext_resource type="Script" path="res://src/game/camera/gd_game_camera.gd" id="1_2067x"]
+[ext_resource type="Script" path="res://src/game/client/gd_client.gd" id="1_ngyf4"]
+[ext_resource type="ArrayMesh" uid="uid://h1x8i2uhd3p8" path="res://models/bloxiann.obj" id="2_1cvfg"]
+[ext_resource type="Script" path="res://src/game/coreui/gd_bottom_bar.gd" id="3_bvosl"]
+[ext_resource type="FontFile" uid="uid://iy224o7xv23a" path="res://data/UI/themes/fonts/futur.ttf" id="4_itmj3"]
+[ext_resource type="Script" path="res://src/game/coreui/gd_pause_button.gd" id="6_aoefi"]
+[ext_resource type="Script" path="res://src/game/coreui/gd_pause_menu.gd" id="6_ktw6x"]
+[ext_resource type="Script" path="res://src/game/coreui/gd_top_pause_bar.gd" id="8_cc8kq"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_v0sif"]
+size = Vector2(16, 16)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_4na0b"]
+size = Vector2(32, 32)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1kqf7"]
+albedo_color = Color(0.807843, 0.341176, 0, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_pi82d"]
+size = Vector2(2, 4)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_1w7qb"]
+size = Vector2(8, 4)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ol52s"]
+size = Vector3(0.5, 5, 4)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_u6ybw"]
+
+[sub_resource type="Sky" id="Sky_qk0kp"]
+sky_material = SubResource("ProceduralSkyMaterial_u6ybw")
+
+[sub_resource type="Environment" id="Environment_oll2m"]
+background_mode = 2
+sky = SubResource("Sky_qk0kp")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dneli"]
+size = Vector3(1, 2, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2588t"]
+proximity_fade_distance = 2.0
+distance_fade_mode = 2
+distance_fade_max_distance = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_46g5m"]
+bg_color = Color(0, 0, 0, 0.690196)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 4.0
+expand_margin_right = 4.0
+shadow_color = Color(0, 0, 0, 0.462745)
+shadow_size = 5
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3w2sw"]
+bg_color = Color(0.529412, 0.529412, 0.529412, 0.690196)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 4.0
+expand_margin_right = 4.0
+shadow_color = Color(0, 0, 0, 0.462745)
+shadow_size = 5
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kxtdh"]
+bg_color = Color(0.529412, 0.529412, 0.529412, 0.690196)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 4.0
+expand_margin_right = 4.0
+shadow_color = Color(0, 0, 0, 0.462745)
+shadow_size = 5
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hp3qq"]
+bg_color = Color(0, 0, 0, 0.690196)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0.239216)
+shadow_size = 5
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wuepb"]
+bg_color = Color(1, 1, 1, 0.619608)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_size = 5
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="Theme" id="Theme_j5yt5"]
+default_font = ExtResource("4_itmj3")
+Button/styles/disabled = SubResource("StyleBoxFlat_46g5m")
+Button/styles/focus = SubResource("StyleBoxFlat_3w2sw")
+Button/styles/hover = SubResource("StyleBoxFlat_46g5m")
+Button/styles/normal = SubResource("StyleBoxFlat_46g5m")
+Button/styles/pressed = SubResource("StyleBoxFlat_kxtdh")
+Panel/styles/panel = SubResource("StyleBoxFlat_hp3qq")
+TextEdit/colors/font_color = Color(0.196078, 0.196078, 0.196078, 1)
+TextEdit/constants/caret_width = 16
+TextEdit/constants/line_spacing = 9
+TextEdit/styles/normal = SubResource("StyleBoxFlat_wuepb")
+
+[sub_resource type="InputEventAction" id="InputEventAction_5dnwq"]
+action = &"core_pause"
+
+[sub_resource type="Shortcut" id="Shortcut_isjlj"]
+events = [SubResource("InputEventAction_5dnwq")]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+use_collision = true
+mesh = SubResource("PlaneMesh_v0sif")
+
+[node name="CSGMesh3D2" type="CSGMesh3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
+use_collision = true
+mesh = SubResource("PlaneMesh_4na0b")
+
+[node name="CSGMesh3D3" type="CSGMesh3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, -2, 0)
+use_collision = true
+mesh = SubResource("PlaneMesh_4na0b")
+material = SubResource("StandardMaterial3D_1kqf7")
+
+[node name="CSGMesh3D4" type="CSGMesh3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 0)
+use_collision = true
+mesh = SubResource("PlaneMesh_pi82d")
+
+[node name="CSGMesh3D5" type="CSGMesh3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 1, 0)
+use_collision = true
+mesh = SubResource("PlaneMesh_pi82d")
+
+[node name="CSGMesh3D6" type="CSGMesh3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 2, 0)
+use_collision = true
+mesh = SubResource("PlaneMesh_pi82d")
+
+[node name="CSGMesh3D7" type="CSGMesh3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 3, 0)
+use_collision = true
+mesh = SubResource("PlaneMesh_1w7qb")
+
+[node name="CSGMesh3D8" type="CSGMesh3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 5, 0)
+use_collision = true
+mesh = SubResource("BoxMesh_ol52s")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_oll2m")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.707107, 0.707107, 0, -0.707107, -0.707107, 0, 2, 0)
+shadow_enabled = true
+
+[node name="Character" type="CharacterBody3D" parent="." node_paths=PackedStringArray("camera")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("1_ngyf4")
+camera = NodePath("../GameCamera")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Character"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_dneli")
+
+[node name="Bloxiann" type="MeshInstance3D" parent="Character"]
+transform = Transform3D(6.55671e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, 6.55671e-08, 0, 1, 0)
+material_override = SubResource("StandardMaterial3D_2588t")
+mesh = ExtResource("2_1cvfg")
+skeleton = NodePath("../..")
+
+[node name="CameraOffset" type="Node3D" parent="Character"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="GameCamera" type="SpringArm3D" parent="." node_paths=PackedStringArray("target")]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0, 1, 0)
+spring_length = 7.0
+script = ExtResource("1_2067x")
+target = NodePath("../Character/CameraOffset")
+
+[node name="Camera3D" type="Camera3D" parent="GameCamera"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="GameCamera/Camera3D"]
+
+[node name="CoreUI" type="Control" parent="GameCamera/Camera3D/CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Theme" type="ReferenceRect" parent="GameCamera/Camera3D/CanvasLayer/CoreUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_j5yt5")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameCamera/Camera3D/CanvasLayer/CoreUI/Theme"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
+
+[node name="Margin" type="MarginContainer" parent="GameCamera/Camera3D/CanvasLayer/CoreUI/Theme/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+mouse_filter = 0
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="BottomBar" type="HBoxContainer" parent="GameCamera/Camera3D/CanvasLayer/CoreUI/Theme/VBoxContainer/Margin"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+script = ExtResource("3_bvosl")
+
+[node name="Left" type="HBoxContainer" parent="GameCamera/Camera3D/CanvasLayer/CoreUI/Theme/VBoxContainer/Margin/BottomBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PauseButton" type="Button" parent="GameCamera/Camera3D/CanvasLayer/CoreUI/Theme/VBoxContainer/Margin/BottomBar/Left"]
+layout_mode = 2
+toggle_mode = true
+shortcut = SubResource("Shortcut_isjlj")
+text = "Pause"
+script = ExtResource("6_aoefi")
+
+[node name="Center" type="HBoxContainer" parent="GameCamera/Camera3D/CanvasLayer/CoreUI/Theme/VBoxContainer/Margin/BottomBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="TextEdit" type="TextEdit" parent="GameCamera/Camera3D/CanvasLayer/CoreUI/Theme/VBoxContainer/Margin/BottomBar/Center"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/line_spacing = 9
+placeholder_text = "Type something..."
+wrap_mode = 1
+scroll_smooth = true
+minimap_width = 45
+
+[node name="Right" type="HBoxContainer" parent="GameCamera/Camera3D/CanvasLayer/CoreUI/Theme/VBoxContainer/Margin/BottomBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PauseMenu" type="Control" parent="GameCamera/Camera3D/CanvasLayer/CoreUI/Theme/VBoxContainer"]
+custom_minimum_size = Vector2(0, 256)
+layout_mode = 2
+script = ExtResource("6_ktw6x")
+
+[node name="MarginContainer" type="MarginContainer" parent="GameCamera/Camera3D/CanvasLayer/CoreUI/Theme/VBoxContainer/PauseMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Panel" type="Panel" parent="GameCamera/Camera3D/CanvasLayer/CoreUI/Theme/VBoxContainer/PauseMenu/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="GameCamera/Camera3D/CanvasLayer/CoreUI/Theme/VBoxContainer/PauseMenu/MarginContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameCamera/Camera3D/CanvasLayer/CoreUI/Theme/VBoxContainer/PauseMenu/MarginContainer/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GameCamera/Camera3D/CanvasLayer/CoreUI/Theme/VBoxContainer/PauseMenu/MarginContainer/Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+script = ExtResource("8_cc8kq")
+
+[node name="Label" type="Label" parent="GameCamera/Camera3D/CanvasLayer/CoreUI/Theme/VBoxContainer/PauseMenu/MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "MENU"
+
+[node name="HFlowContainer" type="HBoxContainer" parent="GameCamera/Camera3D/CanvasLayer/CoreUI/Theme/VBoxContainer/PauseMenu/MarginContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Section" type="BoxContainer" parent="GameCamera/Camera3D/CanvasLayer/CoreUI/Theme/VBoxContainer/PauseMenu/MarginContainer/Panel/MarginContainer/VBoxContainer/HFlowContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Panel" type="Panel" parent="GameCamera/Camera3D/CanvasLayer/CoreUI/Theme/VBoxContainer/PauseMenu/MarginContainer/Panel/MarginContainer/VBoxContainer/HFlowContainer/Section"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Section2" type="BoxContainer" parent="GameCamera/Camera3D/CanvasLayer/CoreUI/Theme/VBoxContainer/PauseMenu/MarginContainer/Panel/MarginContainer/VBoxContainer/HFlowContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Panel" type="Panel" parent="GameCamera/Camera3D/CanvasLayer/CoreUI/Theme/VBoxContainer/PauseMenu/MarginContainer/Panel/MarginContainer/VBoxContainer/HFlowContainer/Section2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Section3" type="BoxContainer" parent="GameCamera/Camera3D/CanvasLayer/CoreUI/Theme/VBoxContainer/PauseMenu/MarginContainer/Panel/MarginContainer/VBoxContainer/HFlowContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Panel" type="Panel" parent="GameCamera/Camera3D/CanvasLayer/CoreUI/Theme/VBoxContainer/PauseMenu/MarginContainer/Panel/MarginContainer/VBoxContainer/HFlowContainer/Section3"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[connection signal="gui_input" from="GameCamera/Camera3D/CanvasLayer/CoreUI/Theme/VBoxContainer/PauseMenu/MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer" to="GameCamera/Camera3D/CanvasLayer/CoreUI/Theme/VBoxContainer/PauseMenu/MarginContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer" method="_on_gui_input"]
